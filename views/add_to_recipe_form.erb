@@ -3,14 +3,21 @@
 
 
 <form action='/recipe/<%=@recipe.id()%>' method="post">
+
   <label for='recipe_rating'>Recipe Rating: </label>
   <input id='recipe_rating' name='recipe_rating' type='text'>
+  <br>
   <label for='recipe_ingredients'>Recipe Ingredients: </label>
   <input id='recipe_ingredients' name='recipe_ingredients' type='text'>
+  <br>
   <label for='recipe_instructions'>Recipe instructions: </label>
   <input id='recipe_instructions' name='recipe_instructions' type='text'>
+  <br>
   <button type='submit'>Add to Recipe</button>
+
 </form>
+
+
 
 <h3>
   <ul>

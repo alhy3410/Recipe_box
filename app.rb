@@ -30,6 +30,15 @@ post('/recipe/:id') do
   recipe_rating = params.fetch('recipe_rating')
   recipe_ingredients = params.fetch('recipe_ingredients')
   recipe_instructions = params.fetch('recipe_instructions')
+  if recipe_rating == ""
+    recipe_rating = @recipe.rating
+  end
+  if recipe_ingredients == ""
+    recipe_ingredients = @recipe.ingredients
+  end
+  if recipe_instructions == ""
+    recipe_instructions = @recipe.instructions
+  end
   @recipe.update({:rating => recipe_rating, :ingredients => recipe_ingredients, :instructions => recipe_instructions})
   erb(:add_to_recipe_form)
 end
