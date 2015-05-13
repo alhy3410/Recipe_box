@@ -1,0 +1,13 @@
+<h1> Welcome to our Recipe Box </h1>
+
+<% if @categories.any?() %>
+  <ul><%= @categories.each() do |category| %>
+    <li><a href='/category/<%= category.id() %>'><%= category.name() %></a></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <h3> There are no categories </h3>
+<% end %>
+
+<h3><a href='/recipes/all'>List of all recipes!</a></h3>
