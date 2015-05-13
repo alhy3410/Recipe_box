@@ -1,0 +1,21 @@
+<h1>Add your ratings, ingredients, and instructions to <%= @recipe.name() %></h1>
+
+
+
+<form action='/recipe/<%=@recipe.id()%>' method="post">
+  <label for='recipe_rating'>Recipe Rating: </label>
+  <input id='recipe_rating' name='recipe_rating' type='text'>
+  <label for='recipe_ingredients'>Recipe Ingredients: </label>
+  <input id='recipe_ingredients' name='recipe_ingredients' type='text'>
+  <label for='recipe_instructions'>Recipe instructions: </label>
+  <input id='recipe_instructions' name='recipe_instructions' type='text'>
+  <button type='submit'>Add to Recipe</button>
+</form>
+
+<h3>
+  <ul>
+    <li>Your Rating from 1 to 10: <%= @recipe.rating() %></li>
+    <li>Ingredients: <%= @recipe.ingredients() %></li>
+    <li>Instructions: <%= @recipe.instructions() %></li>
+  </ul>
+</h3>

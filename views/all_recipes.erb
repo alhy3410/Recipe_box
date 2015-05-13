@@ -1,0 +1,18 @@
+<h1>List of all Recipies</h1>
+
+<% if @recipes.any?() %>
+  <% @recipes.each() do |recipe|%>
+  <ul>
+    <li><a href='/recipe/<%=recipe.id()%>'><%= recipe.name() %> </a></li>
+  </ul>
+  <% end %>
+
+<% else %>
+  <h3>You have no recipies</h3>
+<% end %>
+
+<form action='/recipes/all' method='post'>
+  <label for='recipe_name'>Recipe Name: </label>
+  <input id='recipe_name' name='recipe_name' type='text'>
+  <button type='submit'>Add Recipe</button>
+</form>
