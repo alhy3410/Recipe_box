@@ -1,14 +1,14 @@
-<h1>List of all Recipies</h1>
+<h1>List of all Recipes</h1>
 
 <% if @recipes.any?() %>
   <% @recipes.each() do |recipe|%>
   <ul>
-    <li><a href='/recipe/<%= recipe.id() %>'><%= recipe.name() %> </a></li>
+    <li><a href='/recipe/<%= recipe.id() %>'><%= recipe.name() %> [<a href="/delete_recipe/<%= recipe.id() %>">x</a>]</li> </a></li>
   </ul>
   <% end %>
 
 <% else %>
-  <h3>You have no recipies</h3>
+  <h3>You have no recipes</h3>
 <% end %>
 
 <form action='/recipes/all' method='post'>
@@ -16,3 +16,5 @@
   <input id='recipe_name' name='recipe_name' type='text'>
   <button type='submit'>Add Recipe</button>
 </form>
+
+<h4><a href='/'>Back to Home Page</a></h4>
