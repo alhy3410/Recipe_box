@@ -1,9 +1,10 @@
 <h1> Here are all the recipes for <%= @category.name() %> </h1>
+<hr>
 
 <% if @category.recipes.any?() %>
   <% @category.recipes.uniq.each() do |recipe| %>
     <ul>
-      <li><a href'/recipe/<%=recipe.id()%>'><%=recipe.name()%></a></li>
+      <li><a href='/recipe/<%=recipe.id()%>'><%=recipe.name()%>[<a href="/delete_recipe/<%= recipe.id() %>">x</a>]</a></li>
     </ul>
   <% end %>
 <% else %>

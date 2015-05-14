@@ -1,0 +1,12 @@
+<h1>List of recipes by rating </h1>
+<hr>
+
+<% if @ratings.any?() %>
+  <% @ratings.order(:rating).reverse().each() do |rating| %>
+    <li><%=rating.name()%></a></li>
+  <% end %>
+<% else %>
+  <h3>There are no ratings</h3>
+<% end %>
+<br>
+<a href='/'> HOME </a>

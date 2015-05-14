@@ -1,5 +1,5 @@
 <h1>Add your ratings, ingredients, and instructions to <%= @recipe.name() %></h1>
-
+<hr>
 
 
 <form action='/recipe/<%=@recipe.id()%>' method="post">
@@ -7,24 +7,34 @@
   <label for='recipe_rating'>Recipe Rating: </label>
   <input id='recipe_rating' name='recipe_rating' type='text'>
   <br>
-  <label for='recipe_ingredients'>Recipe Ingredients: </label>
-  <input id='recipe_ingredients' name='recipe_ingredients' type='text'>
-  <br>
   <label for='recipe_instructions'>Recipe instructions: </label>
   <input id='recipe_instructions' name='recipe_instructions' type='text'>
   <br>
+  <label for='ingredient_to_add'>Select an ingredient to add</label>
+  <select id='ingredient_to_add' name='ingredient_to_add' type='text'>
+    <% @ingredients.each do |ingredient| %>
+      <option value= <%= ingredient.id() %>><%= ingredient.name() %></option>
+    <% end %>
+  </select>
   <button type='submit'>Add to Recipe</button>
 
 </form>
 
-
-
 <h3>
   <ul>
-    <li>Your Rating from 1 to 10: <%= @recipe.rating() %></li>
-    <li>Ingredients: <%= @recipe.ingredients() %></li>
-    <li>Instructions: <%= @recipe.instructions() %></li>
+    <li>Your Rating from 1 to 10: <%= @recipe.rating() %></li><br>
+    <li>Instructions: <%= @recipe.instructions() %></li><br>
+    <li>List of Ingredients</li>
+      <ul>
+        <% if @recipe.ingredients.any?() %>
+          <% @recipe.ingredients.uniq.each() do |ingredient| %>
+            <li><%=ingredient.name()%></a></li>
+          <% end %>
+        <% else %>
+          <h3>There are no ingredients in this recipe</h3>
+        <% end %>
+    </ul>
   </ul>
 </h3>
-
+<br>
 <h4><a href='/recipes/all'>Back to All Recipes</a></h4>

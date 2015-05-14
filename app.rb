@@ -51,25 +51,39 @@ end
 
 get('/recipe/:id') do
   @recipe = Recipe.find(params.fetch('id').to_i())
+  @ingredients = Ingredient.all()
   erb(:add_to_recipe_form)
 end
 
 post('/recipe/:id') do
   @recipe = Recipe.find(params.fetch('id').to_i())
   recipe_rating = params.fetch('recipe_rating')
-  recipe_ingredients = params.fetch('recipe_ingredients')
   recipe_instructions = params.fetch('recipe_instructions')
   if recipe_rating == ""
     recipe_rating = @recipe.rating
   end
-  if recipe_ingredients == ""
-    recipe_ingredients = @recipe.ingredients
-  end
   if recipe_instructions == ""
     recipe_instructions = @recipe.instructions
   end
-  @recipe.update({:rating => recipe_rating, :ingredients => recipe_ingredients, :instructions => recipe_instructions})
+  @recipe.update({:rating => recipe_rating, :instructions => recipe_instructions})
+
+  ingredient_id = params.fetch('ingredient_to_add').to_i()
+  ingredient = Ingredient.find(ingredient_id)
+  @recipe.ingredients.push(ingredient)
+  @ingredients = Ingredient.all()
   erb(:add_to_recipe_form)
+end
+
+get('/ingredients_list') do
+  @ingredients = Ingredient.all()
+  erb(:ingredient_list)
+end
+
+post('/ingredients_list') do
+  ingredient_name = params.fetch('recipe_ingredient')
+  new_ingredient = Ingredient.create({:name => ingredient_name})
+  @ingredients = Ingredient.all()
+  erb(:ingredient_list)
 end
 
 get('/delete_recipe/:id') do
@@ -77,4 +91,16 @@ get('/delete_recipe/:id') do
   recipe.delete()
   @recipes = Recipe.all()
   erb(:all_recipes)
+end
+
+get('/delete_ingredient/:id') do
+  ingredient = Ingredient.find(params.fetch("id").to_i())
+  ingredient.delete()
+  @ingredients = Ingredient.all()
+  erb(:ingredient_list)
+end
+
+get('/ratings') do
+  @ratings = Recipe.all()
+  erb(:ratings)
 end
